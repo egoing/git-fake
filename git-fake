@@ -1,0 +1,4 @@
+#!/bin/bash
+echo $--add
+echo $2 > $1 && git add $1 && git commit -m "commit $2" && git --no-pager log --oneline --graph --all --decorate
+
