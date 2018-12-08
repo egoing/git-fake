@@ -1,4 +1,25 @@
 #!/bin/bash
-echo $--add
-echo $2 > $1 && git add $1 && git commit -m "commit $2" && git --no-pager log --oneline --graph --all --decorate
-
+content=`date`
+file="foo.txt"
+isAdd=false
+while getopts 'f:c:a' OPTION
+do
+	case $OPTION in
+		f) 
+			file=$OPTARG
+		;;
+		a)
+			isAdd=true
+		;;			
+		c)
+			content=$OPTARG
+		;;
+	esac
+done
+if $isAdd; then
+	echo $content >> $file  
+else
+	echo $content > $file  
+fi
+git add $file
+git commit -m "content $content" 
